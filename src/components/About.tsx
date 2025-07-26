@@ -104,29 +104,29 @@ const About = () => {
   ];
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 relative bg-gradient-to-b from-slate-900 to-slate-800">
-      <div className="container mx-auto px-6">
+    <section id="about" ref={sectionRef} className="py-24 relative bg-slate-800">
+      <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* Profile Image - Enhanced */}
-          <div ref={imageRef} className="relative order-2 lg:order-1">
-            <div className="relative w-96 h-96 mx-auto">
+          {/* Profile Image - Enhanced and Centered */}
+          <div ref={imageRef} className="relative order-2 lg:order-1 flex justify-center items-center">
+            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
               {/* Multiple glow layers for depth - refined */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full opacity-20 blur-2xl animate-pulse" />
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-300 rounded-full opacity-15 blur-xl" />
               
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-blue-400/30 glass">
+              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-blue-400/30 glass shadow-2xl">
                 <img 
                   src="/lovable-uploads/833095f4-726b-461d-beb5-ff64f05528c1.png" 
                   alt="Thiago Alberto"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               
               {/* Refined floating badges */}
-              <div className="absolute -top-4 -right-4 glass px-3 py-2 rounded-lg">
+              <div className="absolute -top-4 -right-4 glass px-3 py-2 rounded-lg shadow-lg">
                 <span className="text-blue-300 font-semibold text-sm">Data Expert</span>
               </div>
-              <div className="absolute -bottom-4 -left-4 glass px-3 py-2 rounded-lg">
+              <div className="absolute -bottom-4 -left-4 glass px-3 py-2 rounded-lg shadow-lg">
                 <span className="text-blue-400 font-semibold text-sm">Analytics Pro</span>
               </div>
             </div>

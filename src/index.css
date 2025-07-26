@@ -187,38 +187,11 @@ All colors MUST be HSL.
     -webkit-text-fill-color: transparent;
   }
 
-  /* Subtle floating elements - reduced colors */
-  .floating-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(3px);
-    opacity: 0.2;
-    pointer-events: none;
-    animation: float 8s ease-in-out infinite;
-  }
-
-  .floating-orb-1 {
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-  }
-
-  .floating-orb-2 {
-    width: 80px;
-    height: 80px;
-    background: radial-gradient(circle, rgba(147, 197, 253, 0.2) 0%, transparent 70%);
-    top: 60%;
-    right: 20%;
-    animation-delay: 3s;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) translateX(0px); }
-    33% { transform: translateY(-15px) translateX(5px); }
-    66% { transform: translateY(-5px) translateX(-8px); }
+  /* Disable floating orbs that might appear behind content */
+  .floating-orb-1,
+  .floating-orb-2,
+  .floating-orb-3 {
+    display: none !important;
   }
 
   /* Particle effects */
@@ -268,42 +241,13 @@ All colors MUST be HSL.
     overflow: hidden;
   }
 
-  /* Hide Spline UI elements and popups */
-  iframe[src*="spline.design"] {
-    border: none !important;
-    outline: none !important;
+  /* Clean animations for modern portfolio */
+  .animate-float {
+    animation: gentle-float 6s ease-in-out infinite;
   }
 
-  /* Custom styles to prevent Spline interface elements */
-  .spline-embed {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .spline-embed::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 60px;
-    height: 60px;
-    background: transparent;
-    pointer-events: none;
-    z-index: 10;
-  }
-
-  /* Enhanced text readability over Spline background */
-  .text-shadow-strong {
-    text-shadow: 
-      2px 2px 4px rgba(0, 0, 0, 0.9),
-      -1px -1px 2px rgba(0, 0, 0, 0.7),
-      1px -1px 2px rgba(0, 0, 0, 0.7),
-      -1px 1px 2px rgba(0, 0, 0, 0.7);
-  }
-
-  /* Better backdrop blur for content over 3D */
-  .backdrop-overlay {
-    backdrop-filter: blur(2px);
-    background: rgba(0, 0, 0, 0.3);
+  @keyframes gentle-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
   }
 }

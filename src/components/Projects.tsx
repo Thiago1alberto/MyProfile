@@ -81,8 +81,8 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" ref={sectionRef} className="py-24 relative bg-gradient-to-b from-slate-800 to-slate-900">
-      <div className="container mx-auto px-6">
+    <section id="projects" ref={sectionRef} className="py-24 relative" style={{background: 'linear-gradient(to bottom, rgb(30 41 59), rgb(25 35 50))'}}>
+      <div className="container mx-auto px-6 relative z-10">
         {/* Enhanced Header */}
         <div className="text-center mb-20">
           <div className="flex items-center justify-center gap-3 mb-6">
@@ -161,11 +161,16 @@ const Projects = () => {
                 </div>
 
                 {/* Enhanced CTA Button */}
-                <button className="w-full btn-primary py-4 px-6 flex items-center justify-center gap-3 group">
+                <a 
+                  href="https://github.com/Thiago1alberto"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full btn-primary py-4 px-6 flex items-center justify-center gap-3 group"
+                >
                   <Eye size={20} />
-                  <span>Explore Project</span>
+                  <span>View on GitHub</span>
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                </button>
+                </a>
               </div>
               
               {/* Gradient border effect */}
@@ -176,9 +181,14 @@ const Projects = () => {
         
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <button className="btn-secondary px-8 py-4 text-lg font-semibold">
-            View All Projects
-          </button>
+          <a 
+            href="https://github.com/Thiago1alberto?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-secondary px-8 py-4 text-lg font-semibold inline-block"
+          >
+            View All Projects on GitHub
+          </a>
         </div>
       </div>
     </section>

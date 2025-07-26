@@ -6,6 +6,7 @@ import About from '@/components/About';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import ScrollAmbientEffect from '@/components/ScrollAmbientEffect';
 
 const Portfolio = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,12 +29,15 @@ const Portfolio = () => {
       {isLoading && <Preloader onComplete={handleLoadingComplete} />}
       
       <div className="relative bg-black text-white">
+        {/* Global ambient scroll effect */}
+        <ScrollAmbientEffect />
+        
         <Navigation />
         
         <main>
           <Hero />
-          <Projects />
           <About />
+          <Projects />
           <Contact />
         </main>
         
