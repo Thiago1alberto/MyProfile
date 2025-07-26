@@ -1,9 +1,3 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
 interface SectionTransitionProps {
   fromColor: string;
   toColor: string;
@@ -11,37 +5,9 @@ interface SectionTransitionProps {
 }
 
 const SectionTransition = ({ fromColor, toColor, className = "" }: SectionTransitionProps) => {
-  const transitionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!transitionRef.current) return;
-
-    // Subtle animation on scroll
-    gsap.fromTo(transitionRef.current,
-      { 
-        opacity: 0.3,
-        scaleY: 0.5
-      },
-      {
-        opacity: 0.8,
-        scaleY: 1,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: transitionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          scrub: 1
-        }
-      }
-    );
-
-  }, []);
-
   return (
     <div 
-      ref={transitionRef}
-      className={`relative h-32 overflow-hidden ${className}`}
+      className={`relative h-20 overflow-hidden ${className}`}
       style={{
         background: `linear-gradient(to bottom, ${fromColor}, ${toColor})`
       }}
@@ -64,9 +30,9 @@ const SectionTransition = ({ fromColor, toColor, className = "" }: SectionTransi
 
       {/* Gradient overlay for smoothness */}
       <div 
-        className="absolute inset-0 opacity-60"
+        className="absolute inset-0 opacity-30"
         style={{
-          background: `linear-gradient(135deg, transparent 30%, rgba(59, 130, 246, 0.05) 50%, transparent 70%)`
+          background: `linear-gradient(135deg, transparent 40%, rgba(59, 130, 246, 0.02) 50%, transparent 60%)`
         }}
       />
     </div>

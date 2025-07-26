@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../contexts/LanguageContext';
 import { LinkedinLogo, GithubLogo, EnvelopeSimple } from 'phosphor-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const socialRef = useRef<HTMLDivElement>(null);
 
@@ -57,19 +59,19 @@ const Contact = () => {
     {
       icon: LinkedinLogo,
       href: "https://www.linkedin.com/in/thiago-alberto-864121190",
-      label: "LinkedIn",
+      label: t('contact.social.linkedin'),
       color: "hover:text-blue-400"
     },
     {
       icon: GithubLogo,
       href: "https://github.com/Thiago1alberto",
-      label: "GitHub",
+      label: t('contact.social.github'),
       color: "hover:text-gray-300"
     },
     {
       icon: EnvelopeSimple,
       href: "mailto:contato@thiagoalberto.dev",
-      label: "Email",
+      label: t('contact.social.email'),
       color: "hover:text-blue-300"
     }
   ];
@@ -79,11 +81,10 @@ const Contact = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-light mb-6 text-glow">
-            Let's Connect
+            {t('contact.title')}
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto font-light">
-            Ready to transform your data into actionable insights? 
-            Let's discuss how I can help drive your business forward.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -92,15 +93,12 @@ const Contact = () => {
           <div className="space-y-8">
             <div className="glass p-8 rounded-xl space-y-6 text-center">
               <h3 className="text-3xl font-light text-cyan-400 mb-6">
-                Get In Touch
+                {t('contact.title')}
               </h3>
               
               <div className="space-y-6 text-gray-300">
                 <p className="font-light text-lg max-w-2xl mx-auto">
-                  I'm always interested in new opportunities and challenging 
-                  data projects. Whether you need help with analytics, 
-                  visualization, or business intelligence solutions, 
-                  I'd love to hear from you.
+                  {t('contact.description')}
                 </p>
                 
                 <div className="space-y-2">
@@ -120,7 +118,7 @@ const Contact = () => {
             {/* Social Links - Enhanced */}
             <div ref={socialRef} className="space-y-6 text-center">
               <h4 className="text-2xl font-light text-foreground">
-                Connect With Me
+                {t('contact.connect')}
               </h4>
               <div className="flex justify-center gap-6">
                 {socialLinks.map((social) => (
@@ -137,7 +135,7 @@ const Contact = () => {
                 ))}
               </div>
               <p className="text-gray-400 text-sm">
-                Click on the icons above to connect with me on different platforms
+                {t('contact.platforms')}
               </p>
             </div>
           </div>

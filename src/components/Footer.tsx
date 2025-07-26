@@ -1,10 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../contexts/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
+  const { t } = useLanguage();
   const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -33,10 +35,10 @@ const Footer = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
+    { name: t('nav.home'), href: '#home' },
+    { name: t('nav.about'), href: '#about' },
+    { name: t('nav.projects'), href: '#projects' },
+    { name: t('nav.contact'), href: '#contact' }
   ];
 
   return (
@@ -54,19 +56,19 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <h3 className="text-2xl font-light text-glow">
-              Thiago Alberto
+              {t('footer.brand.title')}
             </h3>
             <p className="text-gray-300 font-light text-sm">
-              Data Analyst & BI Specialist
+              {t('footer.brand.subtitle')}
               <br />
-              Transforming data into insights
+              {t('footer.brand.description')}
             </p>
           </div>
 
           {/* Navigation */}
           <div className="space-y-4">
             <h4 className="text-lg font-medium text-cyan-400">
-              Navigation
+              {t('footer.navigation')}
             </h4>
             <ul className="space-y-2">
               {navLinks.map((link) => (
@@ -85,26 +87,26 @@ const Footer = () => {
           {/* Services */}
           <div className="space-y-4">
             <h4 className="text-lg font-medium text-cyan-400">
-              Services
+              {t('footer.services')}
             </h4>
             <ul className="space-y-2 text-sm font-light text-gray-300">
-              <li>Data Analysis</li>
-              <li>Business Intelligence</li>
-              <li>Dashboard Creation</li>
-              <li>Process Automation</li>
-              <li>Data Visualization</li>
+              <li>{t('footer.services.analysis')}</li>
+              <li>{t('footer.services.bi')}</li>
+              <li>{t('footer.services.dashboard')}</li>
+              <li>{t('footer.services.automation')}</li>
+              <li>{t('footer.services.visualization')}</li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div className="space-y-4">
             <h4 className="text-lg font-medium text-cyan-400">
-              Get in Touch
+              {t('footer.contact')}
             </h4>
             <div className="space-y-2 text-sm font-light text-gray-300">
-              <p>thiago.alberto@example.com</p>
-              <p>Available for freelance projects</p>
-              <p>Response time: 24 hours</p>
+              <p>{t('footer.contact.email')}</p>
+              <p>{t('footer.contact.available')}</p>
+              <p>{t('footer.contact.response')}</p>
             </div>
           </div>
         </div>
@@ -112,15 +114,15 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-700/20 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-sm text-gray-300 font-light">
-            © 2024 Thiago Alberto. All rights reserved.
+            {t('footer.copyright')}
           </p>
           
           <div className="flex items-center space-x-6 text-sm text-gray-300 font-light">
             <a href="#privacy" className="hover:text-cyan-400 transition-colors">
-              Privacy Policy
+              {t('footer.privacy')}
             </a>
             <a href="#terms" className="hover:text-cyan-400 transition-colors">
-              Terms of Service
+              {t('footer.terms')}
             </a>
           </div>
         </div>

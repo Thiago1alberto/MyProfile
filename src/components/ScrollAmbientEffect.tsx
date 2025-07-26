@@ -1,8 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const ScrollAmbientEffect = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,54 +6,13 @@ const ScrollAmbientEffect = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Create floating particles that respond to scroll
     const particles = containerRef.current.querySelectorAll('.ambient-particle');
 
-    // Floating animation
-    gsap.to(particles, {
-      y: (i) => -30 + (i * 5),
-      x: (i) => Math.sin(i) * 20,
-      rotation: (i) => i * 45,
-      duration: 8,
-      ease: "power1.inOut",
-      repeat: -1,
-      yoyo: true,
-      stagger: {
-        amount: 3,
-        from: "random"
-      }
-    });
-
-    // Scroll-triggered opacity changes
-    gsap.to(containerRef.current, {
-      opacity: 0.8,
-      scrollTrigger: {
-        trigger: "body",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1
-      }
-    });
-
-    // Individual particle scroll effects
+    // Simple CSS animation instead of GSAP to avoid conflicts
     particles.forEach((particle, i) => {
-      gsap.to(particle, {
-        scale: 0.5 + (i * 0.1),
-        rotation: 360,
-        scrollTrigger: {
-          trigger: "body",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 2,
-          onUpdate: (self) => {
-            const progress = self.progress;
-            gsap.set(particle, {
-              x: Math.sin(progress * Math.PI * 4 + i) * 50,
-              y: Math.cos(progress * Math.PI * 2 + i) * 30
-            });
-          }
-        }
-      });
+      const element = particle as HTMLElement;
+      element.style.animation = `gentle-float ${8 + i}s ease-in-out infinite`;
+      element.style.animationDelay = `${i * 0.5}s`;
     });
 
   }, []);

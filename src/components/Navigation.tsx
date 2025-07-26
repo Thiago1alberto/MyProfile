@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
+import LanguageToggle from './LanguageToggle';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Simplified nav animation
@@ -17,10 +20,10 @@ const Navigation = () => {
   };
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
+    { name: t('nav.home'), href: '#home' },
+    { name: t('nav.about'), href: '#about' },
+    { name: t('nav.projects'), href: '#projects' },
+    { name: t('nav.contact'), href: '#contact' }
   ];
 
   return (
@@ -43,19 +46,29 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
+            
+            {/* Language Toggle */}
+            <div className="ml-4">
+              <LanguageToggle />
+            </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={toggleMenu}
-            className="md:hidden text-foreground hover:text-cyber-blue transition-colors"
-          >
-            <div className="w-6 h-6 flex flex-col justify-center space-y-1">
-              <span className={`block w-6 h-0.5 bg-current transition-transform ${isMenuOpen ? 'rotate-45 translate-y-1' : ''}`} />
-              <span className={`block w-6 h-0.5 bg-current transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-6 h-0.5 bg-current transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-1' : ''}`} />
-            </div>
-          </button>
+          {/* Mobile Menu Button and Language Toggle */}
+          <div className="md:hidden flex items-center space-x-4">
+            {/* Language Toggle for Mobile */}
+            <LanguageToggle />
+            
+            <button
+              onClick={toggleMenu}
+              className="text-foreground hover:text-cyber-blue transition-colors"
+            >
+              <div className="w-6 h-6 flex flex-col justify-center space-y-1">
+                <span className={`block w-6 h-0.5 bg-current transition-transform ${isMenuOpen ? 'rotate-45 translate-y-1' : ''}`} />
+                <span className={`block w-6 h-0.5 bg-current transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`} />
+                <span className={`block w-6 h-0.5 bg-current transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-1' : ''}`} />
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

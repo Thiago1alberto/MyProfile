@@ -1,18 +1,49 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../contexts/LanguageContext';
 import { 
-  ChartBar, 
   Database, 
   PresentationChart, 
   File, 
   Code, 
-  Brain 
+  Brain,
+  ChartBar,
+  Table,
+  Lightning,
+  Target,
+  Lightbulb,
+  Palette,
+  TrendUp,
+  Gear
 } from 'phosphor-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Skill Item Component
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const SkillItem = ({ icon: Icon, name, color }: { icon: React.ComponentType<any>, name: string, color: string }) => (
+  <div className="flex-shrink-0 group relative p-6 glass rounded-xl hover:scale-105 transition-all duration-300 cursor-pointer border border-slate-700/30 hover:border-blue-400/50 w-48 backdrop-blur-sm">
+    <div className="flex flex-col items-center space-y-4">
+      <div className="relative">
+        <Icon 
+          size={36} 
+          className={`${color} group-hover:scale-110 transition-all duration-300`}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/30 to-purple-400/30 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      </div>
+      <span className="text-sm font-medium text-center text-slate-300 group-hover:text-white transition-colors leading-tight">
+        {name}
+      </span>
+    </div>
+    
+    {/* Subtle glow effect */}
+    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+  </div>
+);
+
 const About = () => {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -20,114 +51,90 @@ const About = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Simplified section fade in
-      gsap.fromTo(sectionRef.current,
-        { 
-          opacity: 0,
-          y: 30
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
+      // Simplified fade in for image only
+      if (imageRef.current) {
+        gsap.fromTo(imageRef.current,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: imageRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
           }
-        }
-      );
+        );
+      }
 
-      // Simplified image animation
-      gsap.fromTo(imageRef.current,
-        { x: -50, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: imageRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse"
+      // Simplified fade in for content only
+      if (contentRef.current) {
+        gsap.fromTo(contentRef.current,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: contentRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
           }
-        }
-      );
+        );
+      }
 
-      // Simplified content animation
-      gsap.fromTo(contentRef.current,
-        { x: 50, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse"
+      // Keep skills animation - only scale effect
+      if (skillsRef.current) {
+        gsap.fromTo('.skill-icon',
+          { 
+            scale: 0.9,
+            opacity: 0
+          },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.4,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: skillsRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
           }
-        }
-      );
-
-      // Simplified skills animation
-      gsap.fromTo('.skill-icon',
-        { 
-          scale: 0.8,
-          opacity: 0
-        },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.5,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: skillsRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  const skills = [
-    { icon: File, name: 'Excel', color: 'text-blue-400' },
-    { icon: Code, name: 'Python', color: 'text-blue-300' },
-    { icon: Database, name: 'SQL', color: 'text-blue-500' },
-    { icon: PresentationChart, name: 'Looker', color: 'text-slate-300' },
-    { icon: Brain, name: 'Machine Learning', color: 'text-blue-200' }
-  ];
-
   return (
     <section id="about" ref={sectionRef} className="py-24 relative bg-slate-800">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* Profile Image - Enhanced and Centered */}
-          <div ref={imageRef} className="relative order-2 lg:order-1 flex justify-center items-center">
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-              {/* Multiple glow layers for depth - refined */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-400 rounded-full opacity-20 blur-2xl animate-pulse" />
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-300 rounded-full opacity-15 blur-xl" />
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Profile Image - Rectangular with Clean Frame */}
+          <div ref={imageRef} className="relative order-2 lg:order-1 flex justify-center lg:justify-start items-start">
+            <div className="relative w-80 h-96 lg:w-96 lg:h-[450px] lg:mt-8">
+              {/* Subtle background glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent rounded-lg blur-xl"></div>
               
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-blue-400/30 glass shadow-2xl">
+              {/* Clean frame with simple border */}
+              <div className="relative w-full h-full rounded-lg overflow-hidden border border-slate-600/40 shadow-xl glass">
                 <img 
                   src="/lovable-uploads/833095f4-726b-461d-beb5-ff64f05528c1.png" 
                   alt="Thiago Alberto"
                   className="w-full h-full object-cover object-center"
+                  style={{
+                    objectPosition: 'center 25%',
+                    filter: 'contrast(1.05) brightness(1.05) saturate(1.05)'
+                  }}
                 />
-              </div>
-              
-              {/* Refined floating badges */}
-              <div className="absolute -top-4 -right-4 glass px-3 py-2 rounded-lg shadow-lg">
-                <span className="text-blue-300 font-semibold text-sm">Data Expert</span>
-              </div>
-              <div className="absolute -bottom-4 -left-4 glass px-3 py-2 rounded-lg shadow-lg">
-                <span className="text-blue-400 font-semibold text-sm">Analytics Pro</span>
+                
+                {/* Subtle inner glow */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
               </div>
             </div>
           </div>
@@ -137,70 +144,69 @@ const About = () => {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-blue-300"></div>
-                <span className="text-blue-400 font-semibold uppercase tracking-wider text-sm">About Me</span>
+                <span className="text-blue-400 font-semibold uppercase tracking-wider text-sm">{t('about.title')}</span>
               </div>
               
               <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white leading-tight">
-                Turning Data Into 
-                <span className="gradient-text"> Strategic Insights</span>
+                {t('about.intro.title')}
               </h2>
               
               <div className="space-y-6 text-lg text-slate-300 font-light leading-relaxed">
                 <p className="text-xl">
-                  With over <span className="text-blue-400 font-semibold">5 years of experience</span> in data analytics and business intelligence, 
-                  I specialize in transforming raw data into <span className="text-green-400 font-semibold">strategic insights</span> that drive 
-                  business growth and operational efficiency.
+                  {t('about.intro.desc')}
                 </p>
                 <p>
-                  My expertise spans across <span className="text-blue-400">data visualization</span>, <span className="text-green-400">statistical analysis</span>, 
-                  <span className="text-orange-400"> machine learning</span>, and automated reporting systems. I'm passionate about 
-                  uncovering hidden patterns and trends that help organizations make 
-                  data-driven decisions.
+                  {t('about.description.p1')}
                 </p>
                 <p>
-                  When I'm not analyzing data, I enjoy exploring new technologies, 
-                  contributing to open-source projects, and sharing knowledge with 
-                  the data community.
+                  {t('about.description.p2')}
+                </p>
+                <p>
+                  {t('about.description.p3')}
                 </p>
               </div>
             </div>
 
-            {/* Enhanced Skills Grid */}
-            <div ref={skillsRef}>
-              <h3 className="text-2xl font-bold mb-8 text-white">
-                Technical Excellence
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {skills.map((skill, index) => (
-                  <div 
-                    key={skill.name}
-                    className="skill-icon group relative p-6 glass rounded-xl hover:glow-success transition-all duration-300 cursor-pointer border border-slate-700/50 hover:border-blue-400/50"
-                  >
-                    <div className="flex flex-col items-center space-y-3">
-                      <div className="relative">
-                        <skill.icon 
-                          size={40} 
-                          className={`${skill.color} group-hover:scale-110 transition-all duration-300`}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-green-400/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      </div>
-                      <span className="text-sm font-medium text-center text-slate-300 group-hover:text-white transition-colors">
-                        {skill.name}
-                      </span>
-                    </div>
-                    
-                    {/* Skill level indicator */}
-                    <div className="absolute bottom-2 left-2 right-2">
-                      <div className="w-full h-1 bg-slate-700 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-gradient-to-r from-blue-400 to-green-400 rounded-full transition-all duration-1000 group-hover:w-full"
-                          style={{width: `${85 + (index * 2)}%`}}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Full-width Skills Carousel */}
+      <div ref={skillsRef} className="mt-16 w-full">
+        <div className="container mx-auto px-6 mb-8">
+          <h3 className="text-2xl font-bold text-white text-center">
+            {t('about.skills.title')}
+          </h3>
+        </div>
+        
+        {/* Skills Carousel Container - Full Width */}
+        <div className="relative overflow-hidden w-full bg-gradient-to-r from-slate-800 via-slate-700/30 to-slate-800 py-12">
+          <div className="flex animate-scroll" style={{ width: 'max-content' }}>
+            {/* Skills set */}
+            <div className="flex gap-8">
+              <SkillItem icon={PresentationChart} name="Power BI" color="text-yellow-400" />
+              <SkillItem icon={Code} name="Python" color="text-blue-400" />
+              <SkillItem icon={Database} name="SQL" color="text-green-400" />
+              <SkillItem icon={Table} name="Excel" color="text-green-500" />
+              <SkillItem icon={ChartBar} name="Looker Studio" color="text-orange-400" />
+              <SkillItem icon={Brain} name="Pensamento Analítico" color="text-purple-400" />
+              <SkillItem icon={Lightning} name="Automação" color="text-cyan-400" />
+              <SkillItem icon={Target} name="Visão de Produto" color="text-red-400" />
+              <SkillItem icon={Gear} name="Power Apps" color="text-pink-400" />
+              <SkillItem icon={Lightbulb} name="Resolução de Problemas" color="text-yellow-300" />
+            </div>
+            {/* Duplicate for seamless loop */}
+            <div className="flex gap-8 ml-8">
+              <SkillItem icon={PresentationChart} name="Power BI" color="text-yellow-400" />
+              <SkillItem icon={Code} name="Python" color="text-blue-400" />
+              <SkillItem icon={Database} name="SQL" color="text-green-400" />
+              <SkillItem icon={Table} name="Excel" color="text-green-500" />
+              <SkillItem icon={ChartBar} name="Looker Studio" color="text-orange-400" />
+              <SkillItem icon={Brain} name="Pensamento Analítico" color="text-purple-400" />
+              <SkillItem icon={Lightning} name="Automação" color="text-cyan-400" />
+              <SkillItem icon={Target} name="Visão de Produto" color="text-red-400" />
+              <SkillItem icon={Gear} name="Power Apps" color="text-pink-400" />
+              <SkillItem icon={Lightbulb} name="Resolução de Problemas" color="text-yellow-300" />
             </div>
           </div>
         </div>

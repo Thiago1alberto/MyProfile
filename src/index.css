@@ -250,4 +250,18 @@ All colors MUST be HSL.
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
   }
+
+  /* Skills Carousel Animation */
+  .animate-scroll {
+    animation: scroll-left 50s linear infinite;
+  }
+
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-100% - 2rem)); }
+  }
+
+  .skills-track:hover .animate-scroll {
+    animation-play-state: paused;
+  }
 }

@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { useLanguage } from '../contexts/LanguageContext';
 import DataVisualizationCSS from './DataVisualizationCSS';
 
 const Hero = () => {
+  const { t } = useLanguage();
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -90,19 +92,19 @@ const Hero = () => {
           <div className="space-y-12">
             <div className="space-y-8">
               <p className="text-blue-400 font-medium text-lg tracking-wide uppercase">
-                Data Analytics Professional
+                {t('hero.role')}
               </p>
               <h1 
                 ref={titleRef}
                 className="text-6xl md:text-7xl lg:text-8xl font-bold leading-tight"
               >
-                <span className="text-white">Hi, I'm </span>
+                <span className="text-white">{t('hero.greeting')} </span>
                 <span className="bg-gradient-to-r from-blue-300 via-blue-400 to-blue-500 bg-clip-text text-transparent">
-                  Thiago Alberto
+                  {t('hero.name')}
                 </span>
                 <br />
                 <span className="text-blue-200 text-5xl md:text-6xl lg:text-7xl">
-                  Data Analyst
+                  {t('hero.title')}
                 </span>
               </h1>
             </div>
@@ -111,9 +113,11 @@ const Hero = () => {
               ref={subtitleRef}
               className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto font-light leading-relaxed"
             >
-              Transforming <span className="text-blue-400 font-medium">complex data</span> into 
-              <span className="text-blue-300 font-medium"> actionable insights</span> through 
-              advanced analytics and stunning visualizations.
+              {t('hero.subtitle').split(t('hero.subtitle.highlight1'))[0]}
+              <span className="text-blue-400 font-medium">{t('hero.subtitle.highlight1')}</span>
+              {t('hero.subtitle').split(t('hero.subtitle.highlight1'))[1].split(t('hero.subtitle.highlight2'))[0]}
+              <span className="text-blue-300 font-medium">{t('hero.subtitle.highlight2')}</span>
+              {t('hero.subtitle').split(t('hero.subtitle.highlight2'))[1]}
             </p>
 
             <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
@@ -125,7 +129,7 @@ const Hero = () => {
                 onMouseEnter={handleCTAHover}
                 onMouseLeave={handleCTALeave}
               >
-                View My Work
+                {t('hero.cta.work')}
               </a>
               <a 
                 href="https://www.linkedin.com/in/thiago-alberto-864121190"
@@ -135,23 +139,23 @@ const Hero = () => {
                 onMouseEnter={handleCTAHover}
                 onMouseLeave={handleCTALeave}
               >
-                Connect on LinkedIn
+                {t('hero.cta.linkedin')}
               </a>
             </div>
 
             {/* Professional highlights */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 max-w-4xl mx-auto">
               <div className="glass p-6 rounded-xl text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">Analytics</div>
-                <div className="text-slate-400">Data-driven insights</div>
+                <div className="text-3xl font-bold text-blue-400 mb-2">{t('hero.highlights.analytics')}</div>
+                <div className="text-slate-400">{t('hero.highlights.analytics.desc')}</div>
               </div>
               <div className="glass p-6 rounded-xl text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">Visualization</div>
-                <div className="text-slate-400">Interactive dashboards</div>
+                <div className="text-3xl font-bold text-blue-400 mb-2">{t('hero.highlights.visualization')}</div>
+                <div className="text-slate-400">{t('hero.highlights.visualization.desc')}</div>
               </div>
               <div className="glass p-6 rounded-xl text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">Strategy</div>
-                <div className="text-slate-400">Business intelligence</div>
+                <div className="text-3xl font-bold text-blue-400 mb-2">{t('hero.highlights.strategy')}</div>
+                <div className="text-slate-400">{t('hero.highlights.strategy.desc')}</div>
               </div>
             </div>
           </div>

@@ -1,35 +1,39 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../contexts/LanguageContext';
 import { ArrowRight, Eye } from 'phosphor-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Simplified cards animation
-      gsap.fromTo('.project-card',
-        { 
-          y: 50,
-          opacity: 0
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse"
+      // Simplified cards animation - only fade and scale
+      if (cardsRef.current) {
+        gsap.fromTo('.project-card',
+          { 
+            scale: 0.95,
+            opacity: 0
+          },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
           }
-        }
-      );
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -91,14 +95,11 @@ const Projects = () => {
             <div className="w-12 h-1 bg-gradient-to-r from-green-400 to-blue-500"></div>
           </div>
           
-          <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
-            Featured <span className="gradient-text">Projects</span>
+                    <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+            {t('projects.title')}
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
-            A showcase of data analytics projects demonstrating expertise in 
-            <span className="text-blue-400"> business intelligence</span>, 
-            <span className="text-green-400"> visualization</span>, and 
-            <span className="text-orange-400"> process automation</span>.
+            {t('projects.subtitle')}
           </p>
         </div>
 
