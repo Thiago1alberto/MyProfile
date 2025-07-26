@@ -9,18 +9,16 @@ const Footer = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Footer slide up animation
+      // Simplified footer animation
       gsap.fromTo(footerRef.current,
         { 
-          y: 60,
-          opacity: 0,
-          filter: "blur(10px)"
+          y: 30,
+          opacity: 0
         },
         {
           y: 0,
           opacity: 1,
-          filter: "blur(0px)",
-          duration: 1,
+          duration: 0.8,
           ease: "power2.out",
           scrollTrigger: {
             trigger: footerRef.current,
@@ -29,16 +27,6 @@ const Footer = () => {
           }
         }
       );
-
-      // Floating particles animation
-      gsap.to('.particle', {
-        y: -20,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut",
-        stagger: 0.5
-      });
     }, footerRef);
 
     return () => ctx.revert();
@@ -52,13 +40,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer ref={footerRef} className="relative py-16 mt-20 border-t border-border/20">
+    <footer ref={footerRef} className="relative py-16 mt-20 border-t border-gray-700/20 bg-background">
       {/* Background Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="particle absolute top-10 left-10 w-2 h-2 bg-cyber-blue/30 rounded-full blur-sm" />
-        <div className="particle absolute top-20 right-20 w-3 h-3 bg-neon-purple/20 rounded-full blur-sm" />
-        <div className="particle absolute bottom-16 left-1/3 w-2 h-2 bg-electric-cyan/25 rounded-full blur-sm" />
-        <div className="particle absolute bottom-10 right-1/4 w-4 h-4 bg-cyber-blue/15 rounded-full blur-sm" />
+        <div className="particle absolute top-10 left-10 w-2 h-2 bg-cyan-400/30 rounded-full blur-sm" />
+        <div className="particle absolute top-20 right-20 w-3 h-3 bg-purple-400/20 rounded-full blur-sm" />
+        <div className="particle absolute bottom-16 left-1/3 w-2 h-2 bg-cyan-400/25 rounded-full blur-sm" />
+        <div className="particle absolute bottom-10 right-1/4 w-4 h-4 bg-cyan-400/15 rounded-full blur-sm" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -68,7 +56,7 @@ const Footer = () => {
             <h3 className="text-2xl font-light text-glow">
               Thiago Alberto
             </h3>
-            <p className="text-muted-foreground font-light text-sm">
+            <p className="text-gray-300 font-light text-sm">
               Data Analyst & BI Specialist
               <br />
               Transforming data into insights
@@ -77,7 +65,7 @@ const Footer = () => {
 
           {/* Navigation */}
           <div className="space-y-4">
-            <h4 className="text-lg font-medium text-cyber-blue">
+            <h4 className="text-lg font-medium text-cyan-400">
               Navigation
             </h4>
             <ul className="space-y-2">
@@ -85,7 +73,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <a 
                     href={link.href}
-                    className="text-muted-foreground hover:text-cyber-blue transition-colors duration-300 text-sm font-light"
+                    className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm font-light"
                   >
                     {link.name}
                   </a>
@@ -96,10 +84,10 @@ const Footer = () => {
 
           {/* Services */}
           <div className="space-y-4">
-            <h4 className="text-lg font-medium text-cyber-blue">
+            <h4 className="text-lg font-medium text-cyan-400">
               Services
             </h4>
-            <ul className="space-y-2 text-sm font-light text-muted-foreground">
+            <ul className="space-y-2 text-sm font-light text-gray-300">
               <li>Data Analysis</li>
               <li>Business Intelligence</li>
               <li>Dashboard Creation</li>
@@ -110,10 +98,10 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h4 className="text-lg font-medium text-cyber-blue">
+            <h4 className="text-lg font-medium text-cyan-400">
               Get in Touch
             </h4>
-            <div className="space-y-2 text-sm font-light text-muted-foreground">
+            <div className="space-y-2 text-sm font-light text-gray-300">
               <p>thiago.alberto@example.com</p>
               <p>Available for freelance projects</p>
               <p>Response time: 24 hours</p>
@@ -122,16 +110,16 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border/20 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-sm text-muted-foreground font-light">
+        <div className="pt-8 border-t border-gray-700/20 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <p className="text-sm text-gray-300 font-light">
             © 2024 Thiago Alberto. All rights reserved.
           </p>
           
-          <div className="flex items-center space-x-6 text-sm text-muted-foreground font-light">
-            <a href="#privacy" className="hover:text-cyber-blue transition-colors">
+          <div className="flex items-center space-x-6 text-sm text-gray-300 font-light">
+            <a href="#privacy" className="hover:text-cyan-400 transition-colors">
               Privacy Policy
             </a>
-            <a href="#terms" className="hover:text-cyber-blue transition-colors">
+            <a href="#terms" className="hover:text-cyan-400 transition-colors">
               Terms of Service
             </a>
           </div>

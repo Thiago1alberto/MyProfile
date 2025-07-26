@@ -5,10 +5,10 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Animate nav in
+    // Simplified nav animation
     gsap.fromTo('.nav-container', 
-      { y: -100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, delay: 3.5, ease: "power2.out" }
+      { y: -50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, delay: 1, ease: "power2.out" }
     );
   }, []);
 

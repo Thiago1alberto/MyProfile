@@ -11,20 +11,16 @@ const Projects = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Cards stagger animation
+      // Simplified cards animation
       gsap.fromTo('.project-card',
         { 
-          y: 100,
-          opacity: 0,
-          scale: 0.8,
-          filter: "blur(10px)"
+          y: 50,
+          opacity: 0
         },
         {
           y: 0,
           opacity: 1,
-          scale: 1,
-          filter: "blur(0px)",
-          duration: 1,
+          duration: 0.6,
           stagger: 0.2,
           ease: "power2.out",
           scrollTrigger: {
@@ -34,22 +30,6 @@ const Projects = () => {
           }
         }
       );
-
-      // Horizontal scroll animation for larger screens
-      const cards = gsap.utils.toArray('.project-card');
-      if (cards.length > 0 && window.innerWidth >= 1024) {
-        gsap.to(cards, {
-          xPercent: -100 * (cards.length - 1),
-          ease: "none",
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            pin: true,
-            scrub: 1,
-            snap: 1 / (cards.length - 1),
-            end: () => "+=" + (cardsRef.current?.offsetWidth || 0)
-          }
-        });
-      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -101,71 +81,104 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 relative">
+    <section id="projects" ref={sectionRef} className="py-24 relative bg-gradient-to-b from-slate-800 to-slate-900">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-light mb-6 text-glow">
-            Featured Projects
+        {/* Enhanced Header */}
+        <div className="text-center mb-20">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-green-400"></div>
+            <span className="text-blue-400 font-semibold uppercase tracking-wider text-sm">Portfolio</span>
+            <div className="w-12 h-1 bg-gradient-to-r from-green-400 to-blue-500"></div>
+          </div>
+          
+          <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+            Featured <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
             A showcase of data analytics projects demonstrating expertise in 
-            business intelligence, visualization, and process automation.
+            <span className="text-blue-400"> business intelligence</span>, 
+            <span className="text-green-400"> visualization</span>, and 
+            <span className="text-orange-400"> process automation</span>.
           </p>
         </div>
 
-        {/* Projects Grid/Scroll Container */}
-        <div ref={cardsRef} className="lg:flex lg:space-x-8 lg:w-fit space-y-8 lg:space-y-0">
+        {/* Enhanced Projects Grid */}
+        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div 
               key={index}
-              className="project-card lg:w-96 lg:flex-shrink-0 glass rounded-xl overflow-hidden group hover:glow transition-all duration-500"
+              className="project-card group relative glass rounded-2xl overflow-hidden hover:glow transition-all duration-500 border border-slate-700/50 hover:border-blue-400/50"
             >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
+              {/* Project Image with Overlay */}
+              <div className="relative h-56 overflow-hidden">
                 <img 
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
+                
+                {/* Category Badge */}
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 text-xs bg-cyber-blue/20 text-cyber-blue rounded-full backdrop-blur-sm">
+                  <span className="px-4 py-2 text-xs font-semibold bg-blue-500/20 text-blue-300 rounded-full backdrop-blur-sm border border-blue-400/30">
                     {project.category}
                   </span>
                 </div>
+                
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                    <Eye size={40} className="text-white" />
+                  </div>
+                </div>
               </div>
 
-              {/* Project Content */}
-              <div className="p-6 space-y-4">
-                <h3 className="text-xl font-semibold text-foreground group-hover:text-cyber-blue transition-colors">
-                  {project.title}
-                </h3>
-                
-                <p className="text-muted-foreground text-sm font-light leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
-                    <span 
-                      key={tech}
-                      className="px-2 py-1 text-xs bg-secondary/50 text-secondary-foreground rounded border border-border/50"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              {/* Enhanced Content */}
+              <div className="p-8 space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors mb-3">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-slate-300 font-light leading-relaxed">
+                    {project.description}
+                  </p>
                 </div>
 
-                {/* CTA Button */}
-                <button className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-gradient-primary text-primary-foreground rounded-lg font-medium hover:scale-105 transition-transform duration-300 group">
-                  <Eye size={16} />
-                  View Project
-                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                {/* Enhanced Tech Stack */}
+                <div>
+                  <p className="text-sm font-semibold text-blue-400 mb-3">Technologies Used:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.map((tech) => (
+                      <span 
+                        key={tech}
+                        className="px-3 py-1 text-xs font-medium bg-slate-800 text-slate-300 rounded-full border border-slate-600 hover:border-blue-400/50 transition-colors"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Enhanced CTA Button */}
+                <button className="w-full btn-primary py-4 px-6 flex items-center justify-center gap-3 group">
+                  <Eye size={20} />
+                  <span>Explore Project</span>
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
+              
+              {/* Gradient border effect */}
+              <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-blue-500/20 via-green-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
             </div>
           ))}
+        </div>
+        
+        {/* Call to Action */}
+        <div className="text-center mt-16">
+          <button className="btn-secondary px-8 py-4 text-lg font-semibold">
+            View All Projects
+          </button>
         </div>
       </div>
     </section>

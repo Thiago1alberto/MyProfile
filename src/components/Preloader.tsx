@@ -13,33 +13,29 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
   useEffect(() => {
     const tl = gsap.timeline();
 
-    // Initial setup
+    // Simplified setup
     gsap.set([textRef.current], { 
       opacity: 0, 
-      y: 30, 
-      filter: "blur(10px)" 
+      y: 20
     });
 
-    // Animate text in
+    // Simplified animation
     tl.to(textRef.current, {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
-      duration: 1,
+      duration: 0.8,
       ease: "power2.out"
     })
-    // Animate progress bar
+    // Faster progress bar
     .to(progressRef.current, {
       width: "100%",
-      duration: 2.5,
+      duration: 1.5,
       ease: "power2.out"
-    }, "-=0.5")
-    // Fade out preloader
+    }, "-=0.4")
+    // Quick fade out
     .to(preloaderRef.current, {
       opacity: 0,
-      scale: 0.9,
-      duration: 1,
-      delay: 0.3,
+      duration: 0.6,
       ease: "power2.inOut",
       onComplete: () => {
         onComplete();

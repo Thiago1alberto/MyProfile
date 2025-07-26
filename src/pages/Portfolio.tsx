@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Preloader from '@/components/Preloader';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
@@ -12,32 +11,13 @@ const Portfolio = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize Locomotive Scroll after loading
-    const initLocomotiveScroll = async () => {
-      const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      
-      const scroll = new LocomotiveScroll({
-        el: document.querySelector('[data-scroll-container]') as HTMLElement,
-        smooth: true,
-        multiplier: 1,
-        class: 'is-revealed'
-      });
+    // Simplified loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
 
-      // Update ScrollTrigger when locomotive scroll updates
-      scroll.on('scroll', () => {
-        // Update GSAP ScrollTrigger
-        ScrollTrigger.update();
-      });
-
-      return () => {
-        if (scroll) scroll.destroy();
-      };
-    };
-
-    if (!isLoading) {
-      initLocomotiveScroll();
-    }
-  }, [isLoading]);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -47,7 +27,7 @@ const Portfolio = () => {
     <>
       {isLoading && <Preloader onComplete={handleLoadingComplete} />}
       
-      <div data-scroll-container className="relative">
+      <div className="relative bg-black text-white">
         <Navigation />
         
         <main>
