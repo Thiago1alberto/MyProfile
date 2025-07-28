@@ -17,29 +17,30 @@ const translations = {
     'nav.contact': 'Contact',
     
     // Hero Section
-    'hero.role': 'Data Analytics Professional',
+    'hero.role': 'DATA STRATEGY SPECIALIST',
     'hero.greeting': 'Hi, I\'m',
     'hero.name': 'Thiago Alberto',
-    'hero.title': 'Data Analyst',
-    'hero.subtitle': 'Transforming complex data into actionable insights through advanced analytics and stunning visualizations.',
-    'hero.subtitle.highlight1': 'complex data',
-    'hero.subtitle.highlight2': 'actionable insights',
+    'hero.title': 'Business Intelligence & Data Strategy Consultant',
+    'hero.subtitle': 'I turn messy data into clear, useful, and profitable systems. Real insights, decision-driving visuals, and analysis that shows what you\'re missing.',
+    'hero.subtitle.highlight1': 'messy data',
+    'hero.subtitle.highlight2': 'clear, useful, and profitable systems',
     'hero.cta.work': 'View My Work',
     'hero.cta.linkedin': 'Connect on LinkedIn',
-    'hero.highlights.analytics': 'Analytics',
-    'hero.highlights.analytics.desc': 'Data-driven insights',
-    'hero.highlights.visualization': 'Visualization',
-    'hero.highlights.visualization.desc': 'Interactive dashboards',
-    'hero.highlights.strategy': 'Strategy',
-    'hero.highlights.strategy.desc': 'Business intelligence',
+    'hero.highlights.analytics': 'Deep Analytics',
+    'hero.highlights.analytics.desc': 'Insights that reveal profit or loss in real time.',
+    'hero.highlights.visualization': 'Purposeful Visualization',
+    'hero.highlights.visualization.desc': 'Dashboards built to guide — not just impress.',
+    'hero.highlights.strategy': 'Strategic Data Use',
+    'hero.highlights.strategy.desc': 'Decisions powered by logic, not guesswork.',
     
     // About Section
     'about.title': 'About Me',
     'about.intro.title': 'Data Analytics Specialist',
-    'about.intro.desc': 'Passionate about transforming raw data into meaningful business insights',
-    'about.description.p1': 'With a strong background in data analytics and business intelligence, I specialize in extracting valuable insights from complex datasets. My expertise spans across multiple tools and programming languages, enabling me to tackle diverse analytical challenges.',
-    'about.description.p2': 'I believe in the power of data to drive decision-making and create meaningful impact. Whether it\'s building predictive models, creating interactive dashboards, or performing deep statistical analysis, I\'m passionate about turning data into actionable intelligence.',
-    'about.description.p3': 'My approach combines technical expertise with business acumen, ensuring that every analysis not only answers the right questions but also provides clear, actionable recommendations for stakeholders.',
+    'about.intro.desc': 'My work begins where reports end.',
+    'about.description.p1': 'Every day, businesses generate data — but few know how to use it effectively. My work begins where reports end.',
+    'about.description.p2': 'I\'m a data analyst focused on solving real business problems. Beyond building dashboards or automating processes, I create structure so the right decisions can happen faster, with less noise and more confidence.',
+    'about.description.p3': 'I operate at the friction point between operational chaos and strategic clarity. I organize data, untangle bottlenecks, and turn scattered information into visual, practical, and actionable solutions.',
+    'about.description.p4': 'My goal isn\'t to complicate things with pretty charts — it\'s to simplify with intelligence. If your business is stuck in messy spreadsheets, disconnected systems, or blind decisions — that\'s where I come in.',
     'about.skills.title': 'Technical Skills',
     'about.skills.excel': 'Excel',
     'about.skills.python': 'Python',
@@ -55,9 +56,16 @@ const translations = {
     'projects.liveDemo': 'Live Demo',
     
     // Contact Section
-    'contact.title': 'Let\'s Connect',
-    'contact.subtitle': 'Ready to transform your data into insights?',
-    'contact.description': 'I\'m always interested in discussing new opportunities, collaborating on data projects, or simply talking about the latest trends in analytics. Feel free to reach out!',
+    'contact.title': 'Tired of Making Decisions in the Dark?',
+    'contact.subtitle': 'Turn your messy data into clear strategic advantage',
+    'contact.description': 'Stop wasting time on spreadsheets that lie, reports nobody trusts, and gut-feeling decisions that cost money. I build data systems that actually tell you what\'s working, what\'s failing, and exactly what to do next.',
+    'contact.cta.main': 'Fix My Data Problems',
+    'contact.cta.secondary': 'Show Me What\'s Possible',
+    'contact.value.prop': 'Real insights that drive real results — no fluff, no pretty charts that mean nothing',
+    'contact.cta.title': 'Get Your Data Working For You',
+    'contact.cta.subtitle': 'Transform chaos into clarity',
+    'contact.cta.pain': 'Scattered spreadsheets • Manual reports • Guesswork decisions',
+    'contact.cta.primary': 'Fix My Data Problems',
     'contact.email': 'Email',
     'contact.phone': 'Phone',
     'contact.location': 'Location',
@@ -102,29 +110,30 @@ const translations = {
     'nav.contact': 'Contato',
     
     // Hero Section
-    'hero.role': 'Profissional de Análise de Dados',
+    'hero.role': 'ESPECIALISTA EM ESTRATÉGIA DE DADOS',
     'hero.greeting': 'Olá, eu sou',
     'hero.name': 'Thiago Alberto',
-    'hero.title': 'Analista de Dados',
-    'hero.subtitle': 'Transformando dados complexos em insights acionáveis através de análises avançadas e visualizações impressionantes.',
-    'hero.subtitle.highlight1': 'dados complexos',
-    'hero.subtitle.highlight2': 'insights acionáveis',
-    'hero.cta.work': 'Ver Meu Trabalho',
-    'hero.cta.linkedin': 'Conectar no LinkedIn',
-    'hero.highlights.analytics': 'Análise',
-    'hero.highlights.analytics.desc': 'Insights orientados por dados',
-    'hero.highlights.visualization': 'Visualização',
-    'hero.highlights.visualization.desc': 'Dashboards interativos',
-    'hero.highlights.strategy': 'Estratégia',
-    'hero.highlights.strategy.desc': 'Inteligência de negócios',
+    'hero.title': 'Consultor em Análise e Inteligência de Negócios',
+    'hero.subtitle': 'Transformo dados bagunçados em sistemas claros, úteis e lucrativos. Leitura real, visualizações que guiam decisões e análises que falam o que você ainda não vê.',
+    'hero.subtitle.highlight1': 'dados bagunçados',
+    'hero.subtitle.highlight2': 'sistemas claros, úteis e lucrativos',
+    'hero.cta.work': 'Ver meus projetos',
+    'hero.cta.linkedin': 'Falar no LinkedIn',
+    'hero.highlights.analytics': 'Análise Profunda',
+    'hero.highlights.analytics.desc': 'Insights que mostram onde você ganha ou perde.',
+    'hero.highlights.visualization': 'Visualização com Propósito',
+    'hero.highlights.visualization.desc': 'Dashboards que te ajudam a decidir, não só olhar.',
+    'hero.highlights.strategy': 'Estratégia com Dados',
+    'hero.highlights.strategy.desc': 'Decisões guiadas por lógica, não achismo.',
     
     // About Section
     'about.title': 'Sobre Mim',
     'about.intro.title': 'Especialista em Análise de Dados',
-    'about.intro.desc': 'Apaixonado por transformar dados brutos em insights significativos para negócios',
-    'about.description.p1': 'Com sólida experiência em análise de dados e business intelligence, me especializo em extrair insights valiosos de conjuntos de dados complexos. Minha expertise abrange múltiplas ferramentas e linguagens de programação, permitindo-me enfrentar diversos desafios analíticos.',
-    'about.description.p2': 'Acredito no poder dos dados para impulsionar a tomada de decisões e criar impacto significativo. Seja construindo modelos preditivos, criando dashboards interativos ou realizando análises estatísticas profundas, sou apaixonado por transformar dados em inteligência acionável.',
-    'about.description.p3': 'Minha abordagem combina expertise técnica com conhecimento empresarial, garantindo que cada análise não apenas responda às perguntas certas, mas também forneça recomendações claras e práticas para os stakeholders.',
+    'about.intro.desc': 'Meu trabalho começa onde os relatórios param.',
+    'about.description.p1': 'Todos os dias, empresas geram dados — mas nem sempre sabem o que fazer com eles. Meu trabalho começa onde os relatórios param.',
+    'about.description.p2': 'Sou analista de dados com foco em resolver problemas reais de negócio. Mais do que entregar dashboards ou automatizar processos, eu crio estrutura para que as decisões certas aconteçam com mais velocidade, menos ruído e muito mais segurança.',
+    'about.description.p3': 'Atuo no ponto de fricção entre o caos operacional e a clareza estratégica. Organizo dados, desato nós, e transformo informações dispersas em soluções visuais, práticas e acionáveis.',
+    'about.description.p4': 'Meu objetivo não é complicar com gráficos bonitos — é simplificar com inteligência. Se sua empresa está travada em planilhas desorganizadas, sistemas que não conversam ou decisões no escuro, é aí que eu entro.',
     'about.skills.title': 'Habilidades Técnicas',
     'about.skills.excel': 'Excel',
     'about.skills.python': 'Python',
@@ -140,9 +149,16 @@ const translations = {
     'projects.liveDemo': 'Demo Online',
     
     // Contact Section
-    'contact.title': 'Vamos Conversar',
-    'contact.subtitle': 'Pronto para transformar seus dados em insights?',
-    'contact.description': 'Estou sempre interessado em discutir novas oportunidades, colaborar em projetos de dados ou simplesmente conversar sobre as últimas tendências em análise. Sinta-se à vontade para entrar em contato!',
+    'contact.title': 'Cansado de Decidir no Escuro?',
+    'contact.subtitle': 'Transforme seus dados bagunçados em vantagem estratégica clara',
+    'contact.description': 'Pare de perder tempo com planilhas que mentem, relatórios que ninguém confia e decisões no achismo que custam dinheiro. Eu construo sistemas de dados que realmente te mostram o que está funcionando, o que está falhando e exatamente o que fazer.',
+    'contact.cta.main': 'Resolver Meus Problemas de Dados',
+    'contact.cta.secondary': 'Mostrar o Que é Possível',
+    'contact.value.prop': 'Insights reais que geram resultados reais — sem enrolação, sem gráficos bonitos que não significam nada',
+    'contact.cta.title': 'Coloque Seus Dados Para Trabalhar',
+    'contact.cta.subtitle': 'Transforme caos em clareza',
+    'contact.cta.pain': 'Planilhas espalhadas • Relatórios manuais • Decisões no achismo',
+    'contact.cta.primary': 'Resolver Meus Problemas de Dados',
     'contact.email': 'Email',
     'contact.phone': 'Telefone',
     'contact.location': 'Localização',
@@ -179,11 +195,11 @@ const translations = {
     'footer.and': 'e',
     'footer.in': 'no Brasil',
   }
-};
+} as const;
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const useLanguage = () => {
+const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (!context) {
     throw new Error('useLanguage must be used within a LanguageProvider');
@@ -195,11 +211,12 @@ interface LanguageProviderProps {
   children: ReactNode;
 }
 
-export const LanguageProvider = ({ children }: LanguageProviderProps) => {
-  const [language, setLanguage] = useState<Language>('en');
+const LanguageProvider = ({ children }: LanguageProviderProps) => {
+  const [language, setLanguage] = useState<Language>('pt');
 
   const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations['en']] || key;
+    const langTranslations = translations[language];
+    return (langTranslations as any)[key] || key;
   };
 
   return (
@@ -208,3 +225,5 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     </LanguageContext.Provider>
   );
 };
+
+export { useLanguage, LanguageProvider };
