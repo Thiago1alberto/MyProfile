@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import LanguageToggle from './LanguageToggle';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -6,6 +7,8 @@ import { useLanguage } from '../contexts/LanguageContext';
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useLanguage();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     // Simplified nav animation
@@ -20,10 +23,11 @@ const Navigation = () => {
   };
 
   const navItems = [
-    { name: t('nav.home'), href: '#home' },
-    { name: t('nav.about'), href: '#about' },
-    { name: t('nav.projects'), href: '#projects' },
-    { name: t('nav.contact'), href: '#contact' }
+    { name: t('nav.home'), href: '#home', isSection: true },
+    { name: t('nav.about'), href: '#about', isSection: true },
+    { name: t('nav.projects'), href: '#projects', isSection: true },
+    { name: 'Apps', href: '/apps', isSection: false },
+    { name: t('nav.contact'), href: '#contact', isSection: true }
   ];
 
   return (
@@ -38,13 +42,23 @@ const Navigation = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-foreground hover:text-cyber-blue transition-colors duration-300 font-light"
-              >
-                {item.name}
-              </a>
+              item.isSection && isHomePage ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-foreground hover:text-cyber-blue transition-colors duration-300 font-light"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.isSection ? '/' : item.href}
+                  className="text-foreground hover:text-cyber-blue transition-colors duration-300 font-light"
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
             
             {/* Language Toggle */}
@@ -75,14 +89,25 @@ const Navigation = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pt-4 border-t border-border">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="block py-2 text-foreground hover:text-cyber-blue transition-colors duration-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
+              item.isSection && isHomePage ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="block py-2 text-foreground hover:text-cyber-blue transition-colors duration-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.isSection ? '/' : item.href}
+                  className="block py-2 text-foreground hover:text-cyber-blue transition-colors duration-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
         )}

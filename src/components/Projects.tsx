@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -40,6 +41,14 @@ const Projects = () => {
   }, []);
 
   const projects = [
+    {
+      title: "Controle de EPI",
+      description: "Sistema completo para gestão de Equipamentos de Proteção Individual com controle de entrega, vencimento e relatórios automáticos de conformidade.",
+      techStack: ["AppSheet", "Google Sheets", "Mobile App", "Automation"],
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop&crop=entropy&auto=format",
+      category: "Mobile Application",
+      isApp: true
+    },
     {
       title: "Sales Performance Dashboard",
       description: "Interactive Power BI dashboard analyzing sales trends, KPIs, and regional performance metrics with real-time data integration.",
@@ -162,16 +171,27 @@ const Projects = () => {
                 </div>
 
                 {/* Enhanced CTA Button */}
-                <a 
-                  href="https://github.com/Thiago1alberto"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full btn-primary py-4 px-6 flex items-center justify-center gap-3 group"
-                >
-                  <Eye size={20} />
-                  <span>View on GitHub</span>
-                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                </a>
+                {project.isApp ? (
+                  <Link 
+                    to="/apps"
+                    className="w-full btn-primary py-4 px-6 flex items-center justify-center gap-3 group"
+                  >
+                    <Eye size={20} />
+                    <span>Ver App Completo</span>
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                ) : (
+                  <a 
+                    href="https://github.com/Thiago1alberto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full btn-primary py-4 px-6 flex items-center justify-center gap-3 group"
+                  >
+                    <Eye size={20} />
+                    <span>View on GitHub</span>
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
+                )}
               </div>
               
               {/* Gradient border effect */}
@@ -181,15 +201,24 @@ const Projects = () => {
         </div>
         
         {/* Call to Action */}
-        <div className="text-center mt-16">
-          <a 
-            href="https://github.com/Thiago1alberto?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary px-8 py-4 text-lg font-semibold inline-block"
-          >
-            View All Projects on GitHub
-          </a>
+        <div className="text-center mt-16 space-y-6">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link 
+              to="/apps"
+              className="btn-primary px-8 py-4 text-lg font-semibold inline-flex items-center gap-3"
+            >
+              <span>Ver Todos os Apps</span>
+              <ArrowRight size={20} />
+            </Link>
+            <a 
+              href="https://github.com/Thiago1alberto?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary px-8 py-4 text-lg font-semibold inline-block"
+            >
+              View All Projects on GitHub
+            </a>
+          </div>
         </div>
       </div>
     </section>
