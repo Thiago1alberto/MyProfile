@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play, ArrowSquareOut, CheckCircle, Shield, Users, ChartBar } from 'phosphor-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
@@ -6,6 +6,25 @@ import Footer from '../components/Footer';
 // Componente EPIApp inline para resolver problema de import
 const EPIApp = () => {
   const [showDemo, setShowDemo] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  // Atualizar hora em tempo real
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // Função para formatar a hora
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('pt-BR', { 
+      hour: '2-digit', 
+      minute: '2-digit',
+      hour12: false 
+    });
+  };
 
   const features = [
     {
@@ -31,10 +50,12 @@ const EPIApp = () => {
   ];
 
   const benefits = [
-    "Redução de 80% no tempo de controle de EPIs",
-    "Zero multas por não conformidade", 
-    "Economia de até R$ 50.000/ano em custos operacionais",
-    "Relatórios automáticos para auditorias"
+    "Redução de 80% no tempo de controle manual",
+    "Eliminação de 100% das multas por não conformidade",
+    "Economia estimada de R$ 15.000 a R$ 50.000/ano*",
+    "Geração automática de relatórios para auditorias",
+    "Rastreabilidade completa de todos os EPIs",
+    "Alertas preventivos de vencimento via WhatsApp"
   ];
 
   return (
@@ -52,7 +73,8 @@ const EPIApp = () => {
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Sistema completo para gestão de Equipamentos de Proteção Individual. 
-            Controle de entrega, vencimento, conformidade e relatórios automáticos.
+            Funciona em navegadores web e dispositivos móveis com controle de entrega, 
+            vencimento, conformidade e relatórios automáticos.
           </p>
         </div>
 
@@ -96,6 +118,12 @@ const EPIApp = () => {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-4 pt-3 border-t border-green-500/20">
+                  <p className="text-xs text-gray-400 italic">
+                    *Economia baseada em: redução de horas administrativas, eliminação de multas, 
+                    controle de perdas e otimização de compras. Valores variam conforme o porte da empresa.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -143,7 +171,7 @@ const EPIApp = () => {
                     
                     {/* Status Bar */}
                     <div className="flex justify-between items-center px-6 py-2 bg-gray-800">
-                      <span className="text-white text-sm font-medium">9:41</span>
+                      <span className="text-white text-sm font-medium font-mono">{formatTime(currentTime)}</span>
                       <div className="flex items-center gap-1">
                         <div className="w-4 h-2 bg-white rounded-sm"></div>
                         <div className="w-6 h-3 border-2 border-white rounded-sm">
@@ -163,73 +191,15 @@ const EPIApp = () => {
                         />
                       </div>
                     ) : (
-                      <div className="p-4 space-y-4">
-                        {/* App Header */}
-                        <div className="bg-blue-600 p-4 rounded-lg">
-                          <h3 className="text-white font-bold text-lg">Controle EPI</h3>
-                          <p className="text-blue-100 text-sm">Gestão Inteligente</p>
-                        </div>
-
-                        {/* Quick Stats */}
-                        <div className="grid grid-cols-2 gap-3">
-                          <div className="bg-gray-800 p-3 rounded-lg text-center">
-                            <div className="text-green-400 text-2xl font-bold">127</div>
-                            <div className="text-gray-400 text-xs">EPIs Ativos</div>
-                          </div>
-                          <div className="bg-gray-800 p-3 rounded-lg text-center">
-                            <div className="text-yellow-400 text-2xl font-bold">3</div>
-                            <div className="text-gray-400 text-xs">Vencendo</div>
-                          </div>
-                        </div>
-
-                        {/* Recent Activities */}
-                        <div className="space-y-2">
-                          <h4 className="text-white font-medium text-sm">Atividades Recentes</h4>
-                          <div className="space-y-2">
-                            <div className="bg-gray-800 p-3 rounded-lg">
-                              <div className="flex justify-between items-center">
-                                <span className="text-white text-sm">João Silva</span>
-                                <span className="text-green-400 text-xs">Entregue</span>
-                              </div>
-                              <div className="text-gray-400 text-xs">Capacete - Hoje 14:30</div>
-                            </div>
-                            <div className="bg-gray-800 p-3 rounded-lg">
-                              <div className="flex justify-between items-center">
-                                <span className="text-white text-sm">Maria Santos</span>
-                                <span className="text-yellow-400 text-xs">Vencendo</span>
-                              </div>
-                              <div className="text-gray-400 text-xs">Luvas - Vence em 5 dias</div>
-                            </div>
-                            <div className="bg-gray-800 p-3 rounded-lg">
-                              <div className="flex justify-between items-center">
-                                <span className="text-white text-sm">Pedro Costa</span>
-                                <span className="text-blue-400 text-xs">Devolvido</span>
-                              </div>
-                              <div className="text-gray-400 text-xs">Óculos - Ontem 16:15</div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Bottom Navigation */}
-                        <div className="absolute bottom-4 left-4 right-4 bg-gray-800 rounded-lg p-2">
-                          <div className="flex justify-around">
-                            <div className="text-blue-400 text-center">
-                              <div className="w-6 h-6 mx-auto mb-1 bg-blue-400 rounded"></div>
-                              <span className="text-xs">Dashboard</span>
-                            </div>
-                            <div className="text-gray-500 text-center">
-                              <div className="w-6 h-6 mx-auto mb-1 bg-gray-500 rounded"></div>
-                              <span className="text-xs">Funcionários</span>
-                            </div>
-                            <div className="text-gray-500 text-center">
-                              <div className="w-6 h-6 mx-auto mb-1 bg-gray-500 rounded"></div>
-                              <span className="text-xs">EPIs</span>
-                            </div>
-                            <div className="text-gray-500 text-center">
-                              <div className="w-6 h-6 mx-auto mb-1 bg-gray-500 rounded"></div>
-                              <span className="text-xs">Relatórios</span>
-                            </div>
-                          </div>
+                      <div className="p-4 space-y-4 bg-gray-100 h-full">
+                        {/* Placeholder Screen */}
+                        <div className="flex flex-col items-center justify-center h-full text-gray-500">
+                          <div className="text-6xl mb-4">📱</div>
+                          <h3 className="text-lg font-medium text-gray-600 mb-2">App EPI Control</h3>
+                          <p className="text-sm text-center text-gray-500 mb-6">
+                            Clique em "Ver Demo Interativa" para visualizar o aplicativo funcionando
+                          </p>
+                          <div className="w-16 h-1 bg-gray-300 rounded-full"></div>
                         </div>
                       </div>
                     )}
@@ -246,6 +216,16 @@ const EPIApp = () => {
             <div className="absolute -top-4 -left-4 w-8 h-8 bg-green-400 rounded-full animate-bounce"></div>
             <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-blue-400 rounded-full animate-pulse"></div>
             <div className="absolute top-1/2 -right-8 w-4 h-4 bg-cyan-400 rounded-full animate-ping"></div>
+            
+            {/* Real-time indicator */}
+            <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
+              <div className="bg-green-500/20 border border-green-500/50 rounded-lg px-3 py-1 backdrop-blur-sm">
+                <div className="flex items-center gap-2 text-green-300 text-xs">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="font-medium">Hora real do seu dispositivo</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -256,18 +236,26 @@ const EPIApp = () => {
             <div className="text-center">
               <div className="text-blue-400 text-3xl font-bold mb-2">100%</div>
               <div className="text-gray-300 font-medium">Web & Mobile</div>
-              <div className="text-gray-500 text-sm">Funciona em qualquer dispositivo</div>
+              <div className="text-gray-500 text-sm">Acesso via navegador e aplicativo móvel</div>
             </div>
             <div className="text-center">
               <div className="text-green-400 text-3xl font-bold mb-2">24/7</div>
               <div className="text-gray-300 font-medium">Disponibilidade</div>
-              <div className="text-gray-500 text-sm">Acesso online e offline</div>
+              <div className="text-gray-500 text-sm">Funcionamento online e offline</div>
             </div>
             <div className="text-center">
               <div className="text-cyan-400 text-3xl font-bold mb-2">∞</div>
               <div className="text-gray-300 font-medium">Usuários</div>
-              <div className="text-gray-500 text-sm">Sem limite de colaboradores</div>
+              <div className="text-gray-500 text-sm">Escalável para qualquer empresa</div>
             </div>
+          </div>
+          
+          <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+            <h4 className="text-blue-300 font-semibold mb-2">💡 Plataforma Híbrida</h4>
+            <p className="text-gray-300 text-sm">
+              Desenvolvido com AppSheet, oferece experiência nativa em dispositivos móveis 
+              e acesso completo via navegador web em computadores e tablets.
+            </p>
           </div>
         </div>
       </div>
@@ -276,6 +264,11 @@ const EPIApp = () => {
 };
 
 const Apps = () => {
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-black">
       <Navigation />

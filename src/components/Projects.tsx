@@ -44,9 +44,9 @@ const Projects = () => {
     {
       title: "Controle de EPI",
       description: "Sistema completo para gestão de Equipamentos de Proteção Individual com controle de entrega, vencimento e relatórios automáticos de conformidade.",
-      techStack: ["AppSheet", "Google Sheets", "Mobile App", "Automation"],
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop&crop=entropy&auto=format",
-      category: "Mobile Application",
+      techStack: ["AppSheet", "Google Sheets", "Web & Mobile", "Cloud Sync"],
+      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop&crop=entropy&auto=format",
+      category: "Business Application",
       isApp: true
     },
     {
