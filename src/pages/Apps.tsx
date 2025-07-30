@@ -244,18 +244,25 @@ const EPIApp = () => {
               <div className="text-gray-500 text-sm">Funcionamento online e offline</div>
             </div>
             <div className="text-center">
-              <div className="text-cyan-400 text-3xl font-bold mb-2">∞</div>
-              <div className="text-gray-300 font-medium">Usuários</div>
-              <div className="text-gray-500 text-sm">Escalável para qualquer empresa</div>
+              <div className="text-cyan-400 text-3xl font-bold mb-2">10+</div>
+              <div className="text-gray-300 font-medium">Usuários Simultâneos</div>
+              <div className="text-gray-500 text-sm">Plano básico, expansível conforme necessidade</div>
             </div>
           </div>
           
           <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
             <h4 className="text-blue-300 font-semibold mb-2">💡 Plataforma Híbrida</h4>
-            <p className="text-gray-300 text-sm">
+            <p className="text-gray-300 text-sm mb-3">
               Desenvolvido com AppSheet, oferece experiência nativa em dispositivos móveis 
               e acesso completo via navegador web em computadores e tablets.
             </p>
+            <div className="border-t border-blue-500/20 pt-3">
+              <h5 className="text-blue-300 font-semibold text-xs mb-2">📊 Sobre Usuários:</h5>
+              <p className="text-gray-400 text-xs">
+                Cadastre quantos funcionários precisar no sistema. O limite de usuários simultâneos 
+                refere-se a quantas pessoas podem usar o app ao mesmo tempo, baseado no plano contratado.
+              </p>
+            </div>
           </div>
         </div>
       </div>
