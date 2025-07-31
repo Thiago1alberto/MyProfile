@@ -94,10 +94,10 @@ const Contact = () => {
               </div>
 
               {/* Lista de problemas/benefícios */}
-              <div className={`space-y-3 pt-6 border-t transition-all duration-1000 ${
+              <div className={`space-y-3 pt-6 transition-all duration-1000 ${
                 isLightOn 
-                  ? 'border-slate-700/30' 
-                  : 'border-gray-700/20'
+                  ? 'border-slate-700/30 border-t' 
+                  : ''
               }`}>
                 <p className={`text-sm transition-all duration-1000 ${
                   isLightOn 
@@ -138,14 +138,6 @@ const Contact = () => {
                 <p className="text-lg font-medium text-slate-400 italic mt-8 mb-6">
                   Você não precisa ficar no escuro...
                 </p>
-                
-                {/* Indicação visual para clicar */}
-                <div className="flex flex-col items-center gap-2 animate-pulse">
-                  <p className="text-sm text-yellow-400/80 font-medium">
-                    👆 Clique aqui para descobrir a solução
-                  </p>
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce"></div>
-                </div>
               </div>
             </div>
 
@@ -177,6 +169,16 @@ const Contact = () => {
                   </span>
                 </div>
               </button>
+              
+              {/* Indicação visual para clicar - movida para baixo do botão */}
+              {!isLightOn && (
+                <div className="flex flex-col items-center gap-2 animate-pulse mt-4">
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce"></div>
+                  <p className="text-sm text-yellow-400/80 font-medium">
+                    👆 Clique aqui para descobrir a solução
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Call to action buttons - só aparecem com luz acesa */}
