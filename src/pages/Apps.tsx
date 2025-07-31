@@ -187,6 +187,9 @@ const EPIApp = () => {
                           className="w-full h-full border-none"
                           title="EPI Control App Demo"
                           allowFullScreen
+                          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                          loading="lazy"
+                          referrerPolicy="strict-origin-when-cross-origin"
                         />
                       </div>
                     ) : (
