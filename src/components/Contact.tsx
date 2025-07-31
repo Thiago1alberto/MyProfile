@@ -1,8 +1,20 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { Lightbulb, EnvelopeSimple, LinkedinLogo, GithubLogo } from 'phosphor-react';
 
 const Contact = () => {
   const [isLightOn, setIsLightOn] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const handleLightToggle = () => {
+    setIsLightOn(!isLightOn);
+    // Scroll para o topo da seção quando o texto mudar
+    setTimeout(() => {
+      sectionRef.current?.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }, 100);
+  };
 
   const socialLinks = [
     {
@@ -27,6 +39,7 @@ const Contact = () => {
 
   return (
     <section 
+      ref={sectionRef}
       id="contact" 
       className={`py-20 transition-all duration-1000 ${
         isLightOn 
@@ -125,58 +138,67 @@ const Contact = () => {
                 <p className="text-lg font-medium text-slate-400 italic mt-8 mb-6">
                   Você não precisa ficar no escuro...
                 </p>
+                
+                {/* Indicação visual para clicar */}
+                <div className="flex flex-col items-center gap-2 animate-pulse">
+                  <p className="text-sm text-yellow-400/80 font-medium">
+                    👆 Clique aqui para descobrir a solução
+                  </p>
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce"></div>
+                </div>
               </div>
             </div>
 
-            {/* Botão da luz */}
+            {/* Botão da luz - mais visível */}
             <div className="text-center mb-8">
               <button 
-                onClick={() => setIsLightOn(!isLightOn)}
-                className={`inline-flex items-center gap-3 px-6 py-3 rounded-lg border transition-all duration-1000 transform hover:scale-105 ${
+                onClick={handleLightToggle}
+                className={`inline-flex items-center gap-3 px-8 py-4 rounded-lg border transition-all duration-1000 transform hover:scale-105 relative ${
                   isLightOn 
-                    ? 'bg-yellow-500/20 border-yellow-400/50 text-yellow-300 hover:bg-yellow-500/30' 
-                    : 'bg-gray-800/50 border-gray-600/50 text-gray-400 hover:bg-gray-700/50'
+                    ? 'bg-yellow-500/20 border-yellow-400/50 text-yellow-300 hover:bg-yellow-500/30 shadow-lg shadow-yellow-500/20' 
+                    : 'bg-gray-800/50 border-yellow-600/30 text-yellow-400 hover:bg-yellow-800/30 hover:border-yellow-500/50 shadow-lg hover:shadow-yellow-500/10'
                 }`}
               >
-                {isLightOn ? (
-                  <Lightbulb size={24} weight="fill" />
-                ) : (
-                  <Lightbulb size={24} weight="regular" />
-                )}
-                <span className="font-medium">
-                  {isLightOn ? 'Apagar as luzes' : 'Acender as luzes'}
-                </span>
+                {/* Efeito de brilho quando hover */}
+                <div className={`absolute inset-0 rounded-lg transition-all duration-300 ${
+                  isLightOn 
+                    ? 'bg-yellow-500/10' 
+                    : 'bg-gradient-to-r from-yellow-500/5 via-yellow-400/5 to-yellow-500/5 opacity-0 hover:opacity-100'
+                }`}></div>
+                
+                <div className="relative z-10 flex items-center gap-3">
+                  {isLightOn ? (
+                    <Lightbulb size={28} weight="fill" className="text-yellow-400" />
+                  ) : (
+                    <Lightbulb size={28} weight="regular" className="animate-pulse" />
+                  )}
+                  <span className="font-semibold text-lg">
+                    {isLightOn ? 'Apagar as luzes' : 'Acender as luzes 💡'}
+                  </span>
+                </div>
               </button>
             </div>
 
-            {/* Call to action buttons */}
-            <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-1000 ${
-              isLightOn ? 'opacity-100' : 'opacity-50'
-            }`}>
-              <a
-                href="mailto:contato@thiagoalberto.dev?subject=Quero resolver meus problemas de dados"
-                className={`px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${
-                  isLightOn 
-                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-500 hover:to-cyan-500 border border-blue-400/30' 
-                    : 'bg-gray-700 text-gray-400 hover:bg-gray-600 border border-gray-600'
-                }`}
-              >
-                {isLightOn ? 'Vamos conversar sobre sua transformação' : 'Quero resolver meus problemas de dados'}
-              </a>
-              
-              <a
-                href="https://www.linkedin.com/in/thiago-alberto-864121190"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`px-6 py-4 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 border ${
-                  isLightOn 
-                    ? 'border-cyan-400/50 text-cyan-300 hover:bg-cyan-400/10' 
-                    : 'border-gray-600 text-gray-500 hover:bg-gray-700/50'
-                }`}
-              >
-                {isLightOn ? 'Entenda o que podemos fazer juntos' : 'Veja como posso ajudar'}
-              </a>
-            </div>
+            {/* Call to action buttons - só aparecem com luz acesa */}
+            {isLightOn && (
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in">
+                <a
+                  href="mailto:contato@thiagoalberto.dev?subject=Vamos transformar meus dados em resultados"
+                  className="px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-500 hover:to-cyan-500 border border-blue-400/30 min-w-[280px] text-center"
+                >
+                  Quero transformar meus dados
+                </a>
+                
+                <a
+                  href="https://www.linkedin.com/in/thiago-alberto-864121190"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 border border-cyan-400/50 text-cyan-300 hover:bg-cyan-400/10 min-w-[280px] text-center"
+                >
+                  Ver casos de sucesso
+                </a>
+              </div>
+            )}
           </div>
 
           {/* Social Links */}

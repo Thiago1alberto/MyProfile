@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Play, ArrowSquareOut, CheckCircle, Shield, Users, ChartBar } from 'phosphor-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Componente EPIApp inline para resolver problema de import
 const EPIApp = () => {
+  const { t } = useLanguage();
   const [showDemo, setShowDemo] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -29,33 +31,33 @@ const EPIApp = () => {
   const features = [
     {
       icon: Shield,
-      title: "Controle Total",
-      description: "Monitore todos os EPIs da empresa em tempo real"
+      title: t('apps.epi.features.control.title'),
+      description: t('apps.epi.features.control.desc')
     },
     {
       icon: Users,
-      title: "Gestão de Funcionários", 
-      description: "Controle individual por colaborador e setor"
+      title: t('apps.epi.features.management.title'), 
+      description: t('apps.epi.features.management.desc')
     },
     {
       icon: ChartBar,
-      title: "Relatórios Automáticos",
-      description: "Dashboards e relatórios de conformidade instantâneos"
+      title: t('apps.epi.features.reports.title'),
+      description: t('apps.epi.features.reports.desc')
     },
     {
       icon: CheckCircle,
-      title: "Conformidade NR",
-      description: "Garanta 100% de conformidade com as normas regulamentadoras"
+      title: t('apps.epi.features.compliance.title'),
+      description: t('apps.epi.features.compliance.desc')
     }
   ];
 
   const benefits = [
-    "Redução de 80% no tempo de controle manual",
-    "Eliminação de 100% das multas por não conformidade",
-    "Economia estimada de R$ 15.000 a R$ 50.000/ano*",
-    "Geração automática de relatórios para auditorias",
-    "Rastreabilidade completa de todos os EPIs",
-    "Alertas preventivos de vencimento via WhatsApp"
+    t('apps.epi.solution.item1'),
+    t('apps.epi.solution.item2'),
+    t('apps.epi.solution.item3'),
+    t('apps.epi.solution.item4'),
+    t('apps.epi.solution.item5'),
+    t('apps.epi.solution.item6')
   ];
 
   return (
@@ -66,15 +68,13 @@ const EPIApp = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-500/30 text-green-400 text-sm font-medium mb-6">
             <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            App Disponível Agora
+            {t('apps.epi.available')}
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-            Controle de EPI
+            {t('apps.epi.title')}
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Sistema completo para gestão de Equipamentos de Proteção Individual. 
-            Funciona em navegadores web e dispositivos móveis com controle de entrega, 
-            vencimento, conformidade e relatórios automáticos.
+            {t('apps.epi.subtitle')}
           </p>
         </div>
 
@@ -87,29 +87,29 @@ const EPIApp = () => {
             {/* Problem & Solution */}
             <div className="space-y-6">
               <div className="p-6 rounded-xl bg-red-500/10 border border-red-500/20">
-                <h3 className="text-xl font-semibold text-red-300 mb-3">O Problema</h3>
+                <h3 className="text-xl font-semibold text-red-300 mb-3">{t('apps.epi.problem.title')}</h3>
                 <ul className="space-y-2 text-gray-300">
                   <li className="flex items-start gap-2">
                     <span className="text-red-400 mt-1">•</span>
-                    Controle manual de EPIs gera erros e retrabalho
+                    {t('apps.epi.problem.item1')}
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-red-400 mt-1">•</span>
-                    Multas por não conformidade com NRs
+                    {t('apps.epi.problem.item2')}
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-red-400 mt-1">•</span>
-                    Perda de EPIs e custos desnecessários
+                    {t('apps.epi.problem.item3')}
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-red-400 mt-1">•</span>
-                    Relatórios demorados para auditorias
+                    {t('apps.epi.problem.item4')}
                   </li>
                 </ul>
               </div>
 
               <div className="p-6 rounded-xl bg-green-500/10 border border-green-500/20">
-                <h3 className="text-xl font-semibold text-green-300 mb-3">A Solução</h3>
+                <h3 className="text-xl font-semibold text-green-300 mb-3">{t('apps.epi.solution.title')}</h3>
                 <ul className="space-y-2 text-gray-300">
                   {benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start gap-2">
@@ -120,8 +120,7 @@ const EPIApp = () => {
                 </ul>
                 <div className="mt-4 pt-3 border-t border-green-500/20">
                   <p className="text-xs text-gray-400 italic">
-                    *Economia baseada em: redução de horas administrativas, eliminação de multas, 
-                    controle de perdas e otimização de compras. Valores variam conforme o porte da empresa.
+                    {t('apps.epi.solution.disclaimer')}
                   </p>
                 </div>
               </div>
@@ -145,15 +144,15 @@ const EPIApp = () => {
                 className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 <Play size={20} weight="fill" />
-                {showDemo ? 'Fechar Demo' : 'Ver Demo Interativa'}
+                {showDemo ? t('apps.epi.close') : t('apps.epi.demo')}
               </button>
               
               <a
-                href="mailto:contato@thiagoalberto.dev?subject=Interesse no App de Controle de EPI"
+                href={`mailto:contato@thiagoalberto.dev?subject=${encodeURIComponent(t('apps.epi.email.subject'))}`}
                 className="flex items-center justify-center gap-3 px-8 py-4 border border-cyan-400/50 text-cyan-300 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:bg-cyan-400/10"
               >
                 <ArrowSquareOut size={20} />
-                Solicitar Demonstração
+                {t('apps.epi.request')}
               </a>
             </div>
           </div>
@@ -195,9 +194,9 @@ const EPIApp = () => {
                         {/* Placeholder Screen */}
                         <div className="flex flex-col items-center justify-center h-full text-gray-500">
                           <div className="text-6xl mb-4">📱</div>
-                          <h3 className="text-lg font-medium text-gray-600 mb-2">App EPI Control</h3>
+                          <h3 className="text-lg font-medium text-gray-600 mb-2">{t('apps.epi.title')}</h3>
                           <p className="text-sm text-center text-gray-500 mb-6">
-                            Clique em "Ver Demo Interativa" para visualizar o aplicativo funcionando
+                            {t('apps.epi.placeholder')}
                           </p>
                           <div className="w-16 h-1 bg-gray-300 rounded-full"></div>
                         </div>
@@ -222,7 +221,7 @@ const EPIApp = () => {
               <div className="bg-green-500/20 border border-green-500/50 rounded-lg px-3 py-1 backdrop-blur-sm">
                 <div className="flex items-center gap-2 text-green-300 text-xs">
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="font-medium">Hora real do seu dispositivo</span>
+                  <span className="font-medium">{t('apps.epi.realtime')}</span>
                 </div>
               </div>
             </div>
@@ -231,36 +230,34 @@ const EPIApp = () => {
 
         {/* Technical Details */}
         <div className="mt-20 p-8 rounded-xl bg-gray-800/30 border border-gray-700/30">
-          <h3 className="text-2xl font-bold text-white mb-6 text-center">Especificações Técnicas</h3>
+          <h3 className="text-2xl font-bold text-white mb-6 text-center">{t('apps.epi.tech.title')}</h3>
           <div className="grid md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="text-blue-400 text-3xl font-bold mb-2">100%</div>
-              <div className="text-gray-300 font-medium">Web & Mobile</div>
-              <div className="text-gray-500 text-sm">Acesso via navegador e aplicativo móvel</div>
+              <div className="text-gray-300 font-medium">{t('apps.epi.tech.platform')}</div>
+              <div className="text-gray-500 text-sm">{t('apps.epi.tech.platform.desc')}</div>
             </div>
             <div className="text-center">
               <div className="text-green-400 text-3xl font-bold mb-2">24/7</div>
-              <div className="text-gray-300 font-medium">Disponibilidade</div>
-              <div className="text-gray-500 text-sm">Funcionamento online e offline</div>
+              <div className="text-gray-300 font-medium">{t('apps.epi.tech.availability')}</div>
+              <div className="text-gray-500 text-sm">{t('apps.epi.tech.availability.desc')}</div>
             </div>
             <div className="text-center">
               <div className="text-cyan-400 text-3xl font-bold mb-2">10+</div>
-              <div className="text-gray-300 font-medium">Usuários Simultâneos</div>
-              <div className="text-gray-500 text-sm">Plano básico, expansível conforme necessidade</div>
+              <div className="text-gray-300 font-medium">{t('apps.epi.tech.users')}</div>
+              <div className="text-gray-500 text-sm">{t('apps.epi.tech.users.desc')}</div>
             </div>
           </div>
           
           <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-            <h4 className="text-blue-300 font-semibold mb-2">💡 Plataforma Híbrida</h4>
+            <h4 className="text-blue-300 font-semibold mb-2">{t('apps.epi.tech.hybrid.title')}</h4>
             <p className="text-gray-300 text-sm mb-3">
-              Desenvolvido com AppSheet, oferece experiência nativa em dispositivos móveis 
-              e acesso completo via navegador web em computadores e tablets.
+              {t('apps.epi.tech.hybrid.desc')}
             </p>
             <div className="border-t border-blue-500/20 pt-3">
-              <h5 className="text-blue-300 font-semibold text-xs mb-2">📊 Sobre Usuários:</h5>
+              <h5 className="text-blue-300 font-semibold text-xs mb-2">{t('apps.epi.tech.users.title')}</h5>
               <p className="text-gray-400 text-xs">
-                Cadastre quantos funcionários precisar no sistema. O limite de usuários simultâneos 
-                refere-se a quantas pessoas podem usar o app ao mesmo tempo, baseado no plano contratado.
+                {t('apps.epi.tech.users.explanation')}
               </p>
             </div>
           </div>
@@ -271,6 +268,8 @@ const EPIApp = () => {
 };
 
 const Apps = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
@@ -284,11 +283,10 @@ const Apps = () => {
       <section className="pt-24 pb-12 bg-gradient-to-b from-gray-900 to-black">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
-            Apps & Soluções
+            {t('apps.title')}
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Aplicações práticas desenvolvidas para resolver problemas reais do dia a dia empresarial. 
-            Cada app é uma solução completa, testada e pronta para usar.
+            {t('apps.subtitle')}
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto"></div>
         </div>
@@ -304,7 +302,7 @@ const Apps = () => {
           <div className="mt-20 text-center">
             <div className="inline-flex items-center gap-3 px-6 py-3 rounded-lg bg-gray-800/50 border border-gray-700">
               <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-              <span className="text-gray-400">Mais apps em desenvolvimento...</span>
+              <span className="text-gray-400">{t('apps.more')}</span>
             </div>
           </div>
         </div>
