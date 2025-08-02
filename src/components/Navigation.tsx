@@ -35,8 +35,12 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-xl font-semibold text-glow">
-            TA
+          <div className="flex items-center">
+            <img 
+              src="/tars-logo-original.svg" 
+              alt="TARS Logo" 
+              className="h-12 w-auto hover:scale-105 transition-transform duration-300"
+            />
           </div>
 
           {/* Desktop Menu */}
