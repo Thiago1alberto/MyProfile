@@ -42,54 +42,54 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "Controle de EPI",
-      description: "Sistema completo para gestão de Equipamentos de Proteção Individual com controle de entrega, vencimento e relatórios automáticos de conformidade.",
+      titleKey: "projects.epi.title",
+      descriptionKey: "projects.epi.description",
+      categoryKey: "projects.epi.category",
       techStack: ["AppSheet", "Google Sheets", "Web & Mobile", "Cloud Sync"],
       image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop&crop=entropy&auto=format",
-      category: "Business Application",
       isApp: true
     },
     {
-      title: "Sales Performance Dashboard",
-      description: "Interactive Power BI dashboard analyzing sales trends, KPIs, and regional performance metrics with real-time data integration.",
+      titleKey: "projects.dashboard.title",
+      descriptionKey: "projects.dashboard.description",
+      categoryKey: "projects.dashboard.category",
       techStack: ["Power BI", "SQL Server", "DAX", "Power Query"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=entropy&auto=format",
-      category: "Business Intelligence"
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=entropy&auto=format"
     },
     {
-      title: "Financial Expense Tracker",
-      description: "Advanced Excel model with VBA automation for tracking expenses, budget forecasting, and financial reporting.",
+      titleKey: "projects.financial.title",
+      descriptionKey: "projects.financial.description",
+      categoryKey: "projects.financial.category",
       techStack: ["Excel", "VBA", "Pivot Tables", "Power Query"],
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop&crop=entropy&auto=format",
-      category: "Financial Analysis"
+      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop&crop=entropy&auto=format"
     },
     {
-      title: "SQL Query Optimizer",
-      description: "Python tool for analyzing and optimizing complex SQL queries, reducing execution time by up to 40%.",
+      titleKey: "projects.optimizer.title",
+      descriptionKey: "projects.optimizer.description",
+      categoryKey: "projects.optimizer.category",
       techStack: ["Python", "SQL", "PostgreSQL", "Performance Tuning"],
-      image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=400&fit=crop&crop=entropy&auto=format",
-      category: "Database Optimization"
+      image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=400&fit=crop&crop=entropy&auto=format"
     },
     {
-      title: "Automated Reporting System",
-      description: "Python-based automation system for generating and distributing daily/weekly reports to stakeholders.",
+      titleKey: "projects.reporting.title",
+      descriptionKey: "projects.reporting.description",
+      categoryKey: "projects.reporting.category",
       techStack: ["Python", "Pandas", "SMTP", "Schedule"],
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&crop=entropy&auto=format",
-      category: "Process Automation"
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&crop=entropy&auto=format"
     },
     {
-      title: "Customer Analytics Platform",
-      description: "Comprehensive analytics platform using Plotly for visualizing customer behavior, retention, and lifetime value.",
+      titleKey: "projects.analytics.title",
+      descriptionKey: "projects.analytics.description",
+      categoryKey: "projects.analytics.category",
       techStack: ["Python", "Plotly", "Dash", "Machine Learning"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=entropy&auto=format",
-      category: "Customer Analytics"
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=entropy&auto=format"
     },
     {
-      title: "Predictive Sales Model",
-      description: "Machine learning model for predicting sales trends and inventory optimization using historical data patterns.",
+      titleKey: "projects.prediction.title",
+      descriptionKey: "projects.prediction.description",
+      categoryKey: "projects.prediction.category",
       techStack: ["Python", "Scikit-learn", "TensorFlow", "Jupyter"],
-      image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&h=400&fit=crop&crop=entropy&auto=format",
-      category: "Machine Learning"
+      image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&h=400&fit=crop&crop=entropy&auto=format"
     }
   ];
 
@@ -123,7 +123,7 @@ const Projects = () => {
               <div className="relative h-56 overflow-hidden">
                 <img 
                   src={project.image}
-                  alt={project.title}
+                  alt={t(project.titleKey)}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
@@ -131,7 +131,7 @@ const Projects = () => {
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
                   <span className="px-4 py-2 text-xs font-semibold bg-blue-500/20 text-blue-300 rounded-full backdrop-blur-sm border border-blue-400/30">
-                    {project.category}
+                    {t(project.categoryKey)}
                   </span>
                 </div>
                 
@@ -147,17 +147,17 @@ const Projects = () => {
               <div className="p-8 space-y-6">
                 <div>
                   <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors mb-3">
-                    {project.title}
+                    {t(project.titleKey)}
                   </h3>
                   
                   <p className="text-slate-300 font-light leading-relaxed">
-                    {project.description}
+                    {t(project.descriptionKey)}
                   </p>
                 </div>
 
                 {/* Enhanced Tech Stack */}
                 <div>
-                  <p className="text-sm font-semibold text-blue-400 mb-3">Technologies Used:</p>
+                  <p className="text-sm font-semibold text-blue-400 mb-3">{t('projects.techUsed')}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.map((tech) => (
                       <span 
@@ -177,7 +177,7 @@ const Projects = () => {
                     className="w-full btn-primary py-4 px-6 flex items-center justify-center gap-3 group"
                   >
                     <Eye size={20} />
-                    <span>Ver App Completo</span>
+                    <span>{t('projects.viewFullApp')}</span>
                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                   </Link>
                 ) : (
@@ -188,7 +188,7 @@ const Projects = () => {
                     className="w-full btn-primary py-4 px-6 flex items-center justify-center gap-3 group"
                   >
                     <Eye size={20} />
-                    <span>View on GitHub</span>
+                    <span>{t('projects.viewOnGithub')}</span>
                     <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                   </a>
                 )}
@@ -207,7 +207,7 @@ const Projects = () => {
               to="/apps"
               className="btn-primary px-8 py-4 text-lg font-semibold inline-flex items-center gap-3"
             >
-              <span>Ver Todos os Apps</span>
+              <span>{t('projects.viewAllApps')}</span>
               <ArrowRight size={20} />
             </Link>
             <a 
@@ -216,7 +216,7 @@ const Projects = () => {
               rel="noopener noreferrer"
               className="btn-secondary px-8 py-4 text-lg font-semibold inline-block"
             >
-              View All Projects on GitHub
+              {t('projects.viewAllGithub')}
             </a>
           </div>
         </div>
